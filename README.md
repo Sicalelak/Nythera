@@ -2,6 +2,17 @@
 
 A UI library developed by some lazy people.
 
+# Preview
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/47966063-bff0-432b-80d6-bdd4a87ef5b9" alt="Nythera V3 Main UI" width="700">
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4a88987b-0e38-43d6-9ebd-a651560a1b58" alt="Nythera V3 Components" width="700">
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d336546c-b4ee-4883-ac6a-c77fcbd88b98" alt="Nythera V3 Credits" width="700">
+</p>
+
 ## Installation
 
 Add this to the top of your script:
