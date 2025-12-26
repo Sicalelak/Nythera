@@ -1,32 +1,21 @@
-# Nythera V3
+# Nythera
 
-A clean and customizable UI library for Roblox. Built with performance and ease of use in mind.
-
-## Features
-
-- Tab-based navigation with smooth animations
-- Multiple component types (toggles, sliders, buttons, dropdowns, inputs)
-- Multi-select and single-select dropdowns with search support
-- Notification system with stacking support
-- Automatic configuration saving and loading per game
-- Mobile support with draggable toggle button
-- Resizable and draggable window
-- Clean, modern design
+A UI library developed by some lazy people.
 
 ## Installation
 
 Add this to the top of your script:
 
 ```lua
-local Library = loadstring(game:HttpGet("YOUR_RAW_URL_HERE"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sicalelak/Sicalelak/refs/heads/main/NytheraRevampUI"))()
 ```
 
 ## Quick Start
 
 ```lua
-local Library = loadstring(game:HttpGet("YOUR_RAW_URL_HERE"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sicalelak/Sicalelak/refs/heads/main/NytheraRevampUI"))()
 
--- Optional: Customize before creating window
+-- This is optional: Customize before creating window
 Library.Config.AccentColor = Color3.fromRGB(70, 130, 240)
 Library.Config.LogoImage = "rbxassetid://YOUR_LOGO_ID"
 Library.Config.MobileButtonImage = "rbxassetid://YOUR_ICON_ID"
@@ -38,7 +27,7 @@ local Window = Library:CreateWindow()
 local MainTab = Window:CreateTab("Main", "rbxassetid://7072706620")
 
 -- Create a section
-local Section = MainTab:AddSection("Settings", "left")
+local Section = MainTab:AddSection("Settings", "left") -- or right
 
 -- Add components
 local MyToggle = Section:AddToggle({
@@ -57,7 +46,7 @@ You can customize the library before creating the window:
 
 ```lua
 Library.Config.AccentColor = Color3.fromRGB(70, 130, 240)  -- Theme color
-Library.Config.LogoImage = "rbxassetid://YOUR_ID"          -- Top bar logo
+Library.Config.LogoImage = "rbxassetid://YOUR_ID"          -- Top bar logo (the one on the top left I mean)
 Library.Config.MobileButtonImage = "rbxassetid://YOUR_ID"  -- Mobile toggle button icon
 ```
 
@@ -67,7 +56,7 @@ Library.Config.MobileButtonImage = "rbxassetid://YOUR_ID"  -- Mobile toggle butt
 local Tab = Window:CreateTab("Tab Name", "rbxassetid://ICON_ID")
 ```
 
-The icon parameter is optional. If not provided, a default icon will be used.
+The icon parameter is optional. If not provided, a default icon will be used. (IDK if the default one works never tested it)
 
 ## Creating Sections
 
@@ -94,14 +83,14 @@ local Toggle = Section:AddToggle({
     end
 })
 
--- Control programmatically
+-- Control it
 Toggle:Set(true)
 local value = Toggle:GetValue()
 ```
 
 ### Slider
 
-A draggable slider for numeric values.
+A draggable slider.
 
 ```lua
 local Slider = Section:AddSlider({
@@ -116,14 +105,14 @@ local Slider = Section:AddSlider({
     end
 })
 
--- Control programmatically
+-- Control it
 Slider:Set(75)
 local value = Slider:GetValue()
 ```
 
 ### Button
 
-A clickable button that triggers an action.
+A normal clickable button.
 
 ```lua
 Section:AddButton({
@@ -167,7 +156,7 @@ local Dropdown = Section:AddDropdown({
     end
 })
 
--- Control programmatically
+-- Control it
 Dropdown:Set("Option 2")
 Dropdown:Refresh({"New 1", "New 2", "New 3"})  -- Update items
 local value = Dropdown:GetValue()
@@ -183,7 +172,7 @@ local MultiDropdown = Section:AddDropdown({
     Items = {"Feature A", "Feature B", "Feature C"},
     DefaultSelections = {"Feature A"},
     MultiSelect = true,
-    MaxSelections = 3,
+    MaxSelections = 3, -- This is to set how many options the user can select at once
     Flag = "multi_dropdown",
     Callback = function(selected)
         print("Selected:", table.concat(selected, ", "))
@@ -207,14 +196,14 @@ local Input = Section:AddInputLetterAdd({
     end
 })
 
--- Control programmatically
+-- Control it
 Input:SetText("NewValue")
 local value = Input:GetValue()
 ```
 
 ### Combo Input
 
-An input with text, number, and toggle combined.
+An input with text, number, and toggle combined. (IDK how to explain it better just try it out to see what I mean)
 
 ```lua
 local Combo = Section:AddInput({
@@ -246,14 +235,14 @@ local InputDropdown = Section:AddInputMultiDropdown({
     end
 })
 
--- Control programmatically
+-- Control it
 InputDropdown:Refresh({"New 1", "New 2"})
 InputDropdown:Clear()
 ```
 
 ## Notifications
 
-The library includes a notification system with three types.
+The library also has a notification system with three types.
 
 ```lua
 Library:NotifySuccess("Operation completed!")
@@ -261,16 +250,16 @@ Library:NotifyWarning("Please be careful!")
 Library:NotifyError("Something went wrong!")
 ```
 
-Notifications automatically stack and dismiss after 3 seconds. Duplicate notifications will show a count instead of creating new ones.
+Notifications automatically stack and dismiss after 3 seconds. Duplicate notifications will show a count instead of creating new ones. (like: Success! (3x))
 
 ## Configuration System
 
 The library automatically creates a Config tab where users can save and load their settings. Configurations are saved per game using the game's PlaceId.
 
-Key features:
-- Automatic saving every 60 seconds when auto-save is enabled
-- Per-game configuration isolation
-- Last used config is remembered and auto-loaded on script execution
+Some Features about the Config Tab:
+- Automatic saving every 60 seconds when auto save is enabled
+- Per game configuration isolation (If the player created a config in lets say Jailbreak the player wont be able to use it on Meepcity)
+- Last used config is remembered and auto loaded on script execution
 
 All components with a Flag parameter are automatically included in saves.
 
@@ -278,7 +267,7 @@ All components with a Flag parameter are automatically included in saves.
 
 Flags are unique identifiers for components. They are used for:
 - Saving and loading configurations
-- Programmatic access to components
+- Giving Access to components
 
 ```lua
 -- Access any component by flag
@@ -313,9 +302,11 @@ local ItemDropdown = Section:AddDropdown({
 
 ## Mobile Support
 
-The library includes a draggable mobile toggle button in the top-left corner. This button allows users to show/hide the main UI window. The button color indicates the current state:
+The library includes a draggable mobile toggle button in the top left corner. This button allows users to show/hide the main UI window. The button color indicates the current state:
 - Green: UI is visible
 - Red: UI is hidden
+
+Also every button in library had mobile support
 
 ## Credits
 
@@ -328,5 +319,5 @@ Nythera V3 UI Library was developed by the Nythera Team:
 
 - The Config and Credits tabs are automatically created and cannot be removed
 - Components without a Flag parameter will not be saved to configurations
-- Flag names should be unique across your entire script
-- The library cleans up existing instances when CreateWindow is called
+- Flag names should be unique across your entire script (please dont be dumb and have two flag names as the same name)
+- The library cleans up existing instances when CreateWindow is called (if the user executes the script again the already existing UI disappears)
